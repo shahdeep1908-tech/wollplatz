@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <p>Woll-Platz Database</p>
+    </div>
+    <div class="col-md-5">
+      {% block scrapper %}
+      {% endblock %}
+    </div>
+    <div class="col-md-3">
+      <p><a class="btn btn-info scrapper" href="{{ url_for('scrape_data_initiate') }}">
+        Scrape Data
+      </a></p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Composition</th>
+            <th>Needle Size</th>
+          </tr>
+        </thead>
+        {% for item in items.items %}
+        <tbody>
+          <tr class="table-success">
+            <td>{{ item.id }}</td>
+            <td><b>{{ item.title }}</b></td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.composition }}</td>
+            <td>{{ item.needle_size }}</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+      {% for page_num in items.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+          {% if page_num %}
+              {% if items.page == page_num %}
+                  <a class="btn btn-info mb-4" href="{{ url_for('wollplatzScrape', page=page_num) }}">{{ page_num }}</a>
+			  {% else %}
+			  	  <a class="btn btn-outline-info mb-4" href="{{ url_for('wollplatzScrape', page=page_num) }}">{{ page_num }}</a>
+			  {% endif %}
+          {% else %}
+			  ...
+		  {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+<!--        <div class='item'>-->
+<!--            <h1>Item ID: {{ item[0] }}</h1>-->
+<!--            <h2>Item Title: {{ item[1] }}</h2>-->
+<!--            <h3>Item Price: {{item[2] }}</h3>-->
+<!--            <h4>Item Composition: {{ item[3] }}</h4>-->
+<!--            <h5>Item Needle-Size: {{ item[4] }}</h5>-->
+<!--        </div>-->

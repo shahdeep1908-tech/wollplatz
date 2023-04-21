@@ -1,0 +1,40 @@
+nav a {
+    color: #d64161;
+    font-size: 3em;
+    text-decoration: none;
+}
+
+.item {
+    padding: 20px;
+    margin: 10px;
+    background-color: #f7f4f4;
+}
+
+.review {
+        margin-left: 50px;
+        font-size: 20px;
+}
+
+table {
+    text-align: center;
+}
+
+p {
+    margin: 0;
+    font-size: 30px;
+}
+
+a.scrapper {
+    width: 100%;
+}
+
+a.admin {
+    width: 100%;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+button.addMore {
+    margin-top: 30px;
+    width: 100%;
+}
